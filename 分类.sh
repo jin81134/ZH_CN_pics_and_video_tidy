@@ -18,7 +18,7 @@ fi
 if [ $B -gt $E ] #判断数字B是否大于E
 then	
 	echo 错误！起始年（$B）不能大于终止年（$E）！！
-exit
+	exit
 fi
 until [ $B -gt $E ] #直到B大于E时停止
 do
