@@ -1,5 +1,6 @@
 #!bin/bash
 #2020.08.28上传
+#修改时间2020.08.28	14点44分
 #此脚本仅用于分类
 #Linux下可以使用如下命令下载
 #git clone 'https://github.com/811343804/ZH_CN_pics_and_video_tidy'
@@ -16,7 +17,7 @@ else
 fi
 if [ $B -gt $E ] #判断数字B是否大于E
 then	
-	echo 错误！ 起始年（$B）不能大于终止年（$E）！！
+	echo 错误！起始年（$B）不能大于终止年（$E）！！
 exit
 fi
 until [ $B -gt $E ] #直到B大于E时停止
@@ -40,15 +41,16 @@ do
 				mv -u `ls -a|grep "${B}0${C}"` $A/$B年/$C月/视频
 			else
 				cd $A/照片
-				mv -u `ls -a |grep "${B}${C}"` $A/$B年/$C月/照片
+				mv -u `ls -a|grep "${B}${C}"` $A/$B年/$C月/照片
 				cd $A/视频
 				mv -u `ls -a|grep "${B}${C}"` $A/$B年/$C月/视频
 			fi
-			C=$(($C+1))
+		C=$(($C+1))
 		done
 		echo $B年完成!
 	else 
-		echo  文件夹$A不存在! 
+		echo 文件夹$A不存在!
+		exit 
 	fi
 C=1
 B=$(($B+1))
@@ -58,10 +60,10 @@ done
 #while [ $D = 0 ]
 #do
 #	read -p "是否删除$A下的所有文件？(y/n)" D
-#	if	[ $D = Y -o $D = y ]
+#	if [ $D = Y -o $D = y ]
 #	then
 #		rm -r $A/*
-#	elif	[ $D = N -o  $D = n ]
+#	elif	[ $D = N -o $D = n ]
 #	then	
 #		echo 未删除$A下的文件！
 #	else
