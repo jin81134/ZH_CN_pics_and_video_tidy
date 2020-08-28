@@ -2,8 +2,9 @@
 #2020.08.28上传
 #修改时间2020.08.28	14点44分
 #此脚本仅用于分类
-#Linux下可以使用如下命令下载
+#Linux系统可以使用以下命令下载
 #git clone 'https://github.com/811343804/ZH_CN_pics_and_video_tidy'
+
 read -p "所需处理目录：" A 
 read -p "所需处理的起始年（例如2020）：" B
 read -p "所需处理的终止年（例如2020）：" E
