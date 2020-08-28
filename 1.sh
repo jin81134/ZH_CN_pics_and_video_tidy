@@ -2,7 +2,7 @@
 #2020.08.28上传
 #此脚本仅用于分类
 #可以使用如下命令下载
-#git clone 'https://github.com/811343804/ZH_CN_pics_and-_video_tidy'
+#git clone 'https://github.com/811343804/ZH_CN_pics_and_video_tidy'
 read -p "所需处理目录：" A 
 read -p "所需处理的起始年（例如2020）：" B
 read -p "所需处理的终止年（例如2020）：" E
