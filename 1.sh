@@ -55,17 +55,17 @@ C=1
 B=$(($B+1))
 done
 #测试使用#####################################################################
-#	while [ $D = 0 ]
-#	do
-#		read -p "是否删除$A下的所有文件？(y/n)" D
-#		if	[ $D = Y -o $D = y ]
-#		then
-#			rm -r $A/*
-#		elif	[ $D = N -o  $D = n ]
-#		then	
-#			echo 未删除$A下的文件！
-#		else
-#			D=0
-#			echo 输入错误请重新输入！
-#		fi
-#	done
+while [ $D = 0 ]
+do
+	read -p "是否删除$A下的所有文件？(y/n)" D
+	if	[ $D = Y -o $D = y ]
+	then
+		rm -r $A/*
+	elif	[ $D = N -o  $D = n ]
+	then	
+		echo 未删除$A下的文件！
+	else
+		D=0
+		echo 输入错误请重新输入！
+	fi
+done
