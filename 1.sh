@@ -1,4 +1,6 @@
 #!bin/bash
+#2020.08.28上传
+#此脚本用于仅分类
 read -p "所需处理目录：" A 
 read -p "所需处理的起始年（例如2020）：" B
 read -p "所需处理的终止年（例如2020）：" E
@@ -51,18 +53,17 @@ C=1
 B=$(($B+1))
 done
 #测试使用#####################################################################
-while [ $D = 0 ]
-do
-	read -p "是否删除$A下的所有文件？(y/n)" D
-	if	[ $D = Y -o $D = y ]
-	then
-		rm -r $A/*
-	elif	[ $D = N -o  $D = n ]
-	then	
-		echo 未删除$A下的文件！
-	else
-		D=0
-		echo 输入错误请重新输入！
-	fi
-done
-2020.08.28
+#	while [ $D = 0 ]
+#	do
+#		read -p "是否删除$A下的所有文件？(y/n)" D
+#		if	[ $D = Y -o $D = y ]
+#		then
+#			rm -r $A/*
+#		elif	[ $D = N -o  $D = n ]
+#		then	
+#			echo 未删除$A下的文件！
+#		else
+#			D=0
+#			echo 输入错误请重新输入！
+#		fi
+#	done
