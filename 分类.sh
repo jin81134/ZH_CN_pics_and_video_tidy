@@ -6,6 +6,13 @@
 #git clone 'https://github.com/811343804/ZH_CN_pics_and_video_tidy'
 
 read -p "所需处理目录：" A 
+if [ -d $A ]
+then
+        echo 处理目录为$A
+else 
+        echo 文件夹$A不存在!
+        exit
+fi
 read -p "所需处理的起始年（例如2020）：" B
 read -p "所需处理的终止年（例如2020）：" E
 C=1	#月份变量
@@ -23,36 +30,31 @@ then
 fi
 until [ $B -gt $E ] #直到B大于E时停止
 do
-	if [ -d $A ]
-	then
-		cd $A
-		mkdir -p 照片 视频 未知
-		mv -u `ls -a|grep ".jpg"` $A/照片
-		mv -u `ls -a|grep ".mp4"` $A/视频
-		mv -u `ls -a|egrep -v "(年|照片|视频|未知)"` $A/未知
-		until [ $C -gt 12 ] #直到C大于12时停止
-		do
-			mkdir -p $A/$B年/$C月/照片
-			mkdir -p $A/$B年/$C月/视频
-			if [ $C -le 9 ] #小于或等于9
-			then
-				cd $A/照片
-				mv -u `ls -a|grep "${B}0${C}"` $A/$B年/$C月/照片
-				cd $A/视频
-				mv -u `ls -a|grep "${B}0${C}"` $A/$B年/$C月/视频
-			else
-				cd $A/照片
-				mv -u `ls -a|grep "${B}${C}"` $A/$B年/$C月/照片
-				cd $A/视频
-				mv -u `ls -a|grep "${B}${C}"` $A/$B年/$C月/视频
-			fi
-		C=$(($C+1))
-		done
-		echo $B年完成!
-	else 
-		echo 文件夹$A不存在!
-		exit 
-	fi
+	cd $A
+	mkdir -p 照片 视频 未知
+	mv -u `ls -a|grep ".jpg"` $A/照片
+	mv -u `ls -a|grep ".mp4"` $A/视频
+	mv -u `ls -a|egrep -v "(年|照片|视频|未知)"` $A/未知
+	until [ $C -gt 12 ] #直到C大于12时停止
+	do
+		mkdir -p $A/$B年/$C月/照片
+		mkdir -p $A/$B年/$C月/视频
+		if [ $C -le 9 ] #小于或等于9
+		then
+			cd $A/照片
+			mv -u `ls -a|grep "${B}0${C}"` $A/$B年/$C月/照片
+			cd $A/视频
+			mv -u `ls -a|grep "${B}0${C}"` $A/$B年/$C月/视频
+		else
+			cd $A/照片
+			mv -u `ls -a|grep "${B}${C}"` $A/$B年/$C月/照片
+			cd $A/视频
+			mv -u `ls -a|grep "${B}${C}"` $A/$B年/$C月/视频
+		fi
+	C=$(($C+1))
+	done
+	echo $B年完成!
+
 C=1
 B=$(($B+1))
 done
