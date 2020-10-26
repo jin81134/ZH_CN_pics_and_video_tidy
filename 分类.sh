@@ -6,8 +6,8 @@
 #git clone 'https://github.com/811343804/ZH_CN_pics_and_video_tidy'
 
 read -p "所需处理目录：" A 
-read -n4 -p "所需处理的起始年（例如2020）：" B
-read -n4 -p "所需处理的终止年（例如2020）：" E
+read -p "所需处理的起始年（例如2020）：" B
+read -p "所需处理的终止年（例如2020）：" E
 C=1	#月份变量
 if [ $B -gt 0 ] && [ $E -gt 0 ]
 then
