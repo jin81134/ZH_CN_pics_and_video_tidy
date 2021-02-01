@@ -1,9 +1,11 @@
 #!bin/bash
 #2020.08.28上传
-#修改时间2020.10.26	16点29分
+#修改时间2021.2.1	14点25分
 #此脚本仅用于分类
 #可以使用以下命令下载
 #git clone 'https://github.com/811343804/ZH_CN_pics_and_video_tidy'
+#请给予权限运行！
+#给予权限：chmod 700 "${HOME}"/ZH_CN_pics_and_video_tidy/分类.sh
 
 read -p "所需处理目录：" A 
 if [ -d $A ]
@@ -62,7 +64,7 @@ done
 #D=0
 #while [ $D = 0 ]
 #do
-#	read -n1 -p "是否删除$A下的所有文件？(y/n)" D
+#	read -p "是否删除$A下的所有文件？(y/n)" D
 #	if [ $D = Y -o $D = y ]
 #	then
 #		rm -r $A/*
