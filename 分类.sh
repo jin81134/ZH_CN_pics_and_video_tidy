@@ -6,7 +6,6 @@
 #git clone 'https://github.com/811343804/ZH_CN_pics_and_video_tidy'
 #请给予权限运行！
 #给予权限：chmod 700 "${HOME}"/ZH_CN_pics_and_video_tidy/分类.sh
-
 read -p "所需处理目录：" A 
 if [ -d $A ]
 then
@@ -56,7 +55,6 @@ do
 	C=$(($C+1))
 	done
 	echo $B年完成!
-
 C=1
 B=$(($B+1))
 done
