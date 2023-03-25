@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#以文件的修改日期移动文件
 # 获取处理目录
 read -p "请输入要处理的目录：" dir
 if [ ! -d $dir ]; then
@@ -27,11 +27,11 @@ fi
 echo "开始归档照片和视频..."
 for (( year=$start_year; year<=$end_year; year++ )); do
     for (( month=1; month<=12; month++ )); do
-        # 归档照片
+        # 归档照片 以文件的修改日期移动文件
         mkdir -p "$dir/$year年/$month月/照片"
         find "$dir" -maxdepth 1 -type f -name "*.jpg" -newermt "$year-$month-01" ! -newermt "$(( $year + 1 ))-$month-01" -exec mv -u {} "$dir/$year年/$month月/照片" \;
 
-        # 归档视频
+        # 归档视频 以文件的修改日期移动文件
         mkdir -p "$dir/$year年/$month月/视频"
         find "$dir" -maxdepth 1 -type f -name "*.mp4" -newermt "$year-$month-01" ! -newermt "$(( $year + 1 ))-$month-01" -exec mv -u {} "$dir/$year年/$month月/视频" \;
     done
