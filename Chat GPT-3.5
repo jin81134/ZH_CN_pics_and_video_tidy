@@ -1,0 +1,45 @@
+#!/bin/bash
+
+# 获取处理目录
+read -p "请输入要处理的目录：" dir
+if [ ! -d $dir ]; then
+    echo "目录 $dir 不存在！"
+    exit 1
+fi
+
+# 获取起始和终止年份
+read -p "请输入起始年份：" start_year
+read -p "请输入终止年份：" end_year
+
+# 处理起始和终止年份不是数字的情况
+if [[ ! $start_year =~ ^[0-9]+$ ]] || [[ ! $end_year =~ ^[0-9]+$ ]]; then
+    echo "起始年份和终止年份必须是数字！"
+    exit 1
+fi
+
+# 处理起始年份大于终止年份的情况
+if [ $start_year -gt $end_year ]; then
+    echo "起始年份不能大于终止年份！"
+    exit 1
+fi
+
+# 开始归档照片和视频
+echo "开始归档照片和视频..."
+for (( year=$start_year; year<=$end_year; year++ )); do
+    for (( month=1; month<=12; month++ )); do
+        # 归档照片
+        mkdir -p "$dir/$year年/$month月/照片"
+        find "$dir" -maxdepth 1 -type f -name "*.jpg" -newermt "$year-$month-01" ! -newermt "$(( $year + 1 ))-$month-01" -exec mv -u {} "$dir/$year年/$month月/照片" \;
+
+        # 归档视频
+        mkdir -p "$dir/$year年/$month月/视频"
+        find "$dir" -maxdepth 1 -type f -name "*.mp4" -newermt "$year-$month-01" ! -newermt "$(( $year + 1 ))-$month-01" -exec mv -u {} "$dir/$year年/$month月/视频" \;
+    done
+done
+
+# 归档未知文件
+echo "开始归档未知文件..."
+mkdir -p "$dir/未知"
+find "$dir" -maxdepth 1 -type f ! -name "*.jpg" ! -name "*.mp4" -exec mv -u {} "$dir/未知" \;
+
+echo "归档完成！"
